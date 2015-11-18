@@ -3,32 +3,8 @@
 	 {% include 'head.html' %}
 <body>
 <!---strat-banner---->
-<div class="banner">				
-	 <div class="header">  
-	  <div class="container">
-		  <div class="logo">
-				<a href="{% url 'index' %}"> <img src="/static/images/logo.png" title="soup" /></a>
-		 </div>
-		 <!---start-top-nav---->
-		 <div class="top-menu">
-			  <span class="menu"> </span> 
-			   <ul>
-					<li class="active"><a href="{% url 'index' %}">HOME</a></li>						
-					<li><a href="{% url 'contact' %}">CONTACT</a></li>	
-					<li><a href="{% url 'term' %}">TERMS</a></li>						
-					<div class="clearfix"> </div>
-			 </ul>
-		 </div>
-		 <div class="clearfix"></div>
-				<script>
-				$("span.menu").click(function(){
-				$(".top-menu ul").slideToggle("slow" , function(){
-				});
-				});
-				</script>
-			<!---//End-top-nav---->					
-	 	</div>
- 	</div>
+<div class="banner">			
+	 {% include 'header.html' %}
 	 <div class="container">
 		 {% include 'bannerhead.html' %}	
 	 </div>
@@ -36,64 +12,40 @@
 <!---//End-banner---->
 <div class="content">
 	 <div class="container">
-
 		 <div class="banner-links">
 			 <ul>
-				 <li class="active"><a href="#">LOREM IPSUM</a></li>
-				 <li><a href="#">DOLAR SITE AMET</a></li>
-				 <li><a href="#">MORBI IN SEM</a></li>
+				 <li id="a1" class="active"><a>Artical1</a></li>
+				 <li id="a2"><a>Artical2</a></li>
+				 <li id="a3"><a>Artical3</a></li>
 				 <div class="clearfix"></div>
 			 </ul>
 		 </div>
 		 <div class="content-grids">
-			 <div class="col-md-8 content-main">
-				 <div class="content-grid">
-					 <div class="content-grid-head">
-						 <h3>POST OF THE DAY</h3>
-						 <h4>July 24, 2014,Posted by: <a href="#">Admin</a></h4>
-						 <div class="clearfix"></div>
-					 </div>
-					 <div class="content-grid-info">
-						 <h3><a href="single.html">MORBI IN SEM QUIS DUI</a></h3>
-						 <p>Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat.</p>
-						 <img src="/static/images/c1.jpg" alt=""/>
-						 <a class="bttn" href="single.html">MORE</a>
-					</div>
-				 </div>
-				 
-				 <div class="content-grid-sec">
-					 <div class="content-sec-info">
-							 <h3><a href="single.html">ALIQUAM TINCIDUNT MAURI</a></h3>
-							 <h4>Jul 23, 2014, Posted by : <a href="#">Admin</a></h4>
-							 <p>Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat.</p>
-							 <img src="/static/images/c2.jpg" alt=""/>
-							 <a class="bttn" href="single.html">MORE</a>
-					 </div>
-				 </div>
-				 <div class="content-grid-sec">
-					 <div class="content-sec-info">
-							 <h3><a href="single.html">VESTIBULUM COMMODO FELIS</a></h3>
-							 <h4>Jul 23, 2014, Posted by : <a href="#">Admin</a></h4>
-							 <p>Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat.</p>
-							 <img src="/static/images/c3.jpg" alt=""/>
-							 <a class="bttn" href="single.html">MORE</a>
-					 </div>
-				 </div>				 
-				 <div class="pages">
-					 <ul>
-						 <li class="active"><a href="#">1</a></li>
-						 <li><a href="#">2</a></li>
-						 <li><a href="#">3</a></li>
-						 <li><a href="#">4</a></li>
-						 <li><a href="#">5</a></li>
-						 <li><a href="#">6</a></li>
-						 <li><a href="#">Previous</a></li>
-						 <li><a href="#">Next</a></li>
-					 </ul>
-				 </div>				 
+			 <div class="col-md-9 content-main">
+			 	<div id="arti1">
+			 		{% for he in artical1 %}
+			 			<h1>{{  he.title }}</h1>
+			 			<p>{{  he.content }}</p>
+			 			<hr>
+			 		{% endfor %}
+			 	</div>
+			 	<div id="arti2">
+			 		{% for he in artical2 %}
+			 			<h1>{{  he.title }}</h1>
+			 			<p>{{  he.content }}</p>
+			 			<hr>
+			 		{% endfor %}
+			 	</div>
+			 	<div id="arti3">
+			 		{% for he in artical3 %}
+			 			<h1>{{  he.title }}</h1>
+			 			<p>{{  he.content }}</p>
+			 			<hr>
+			 		{% endfor %}
+			 	</div>
 			 </div>
 			 
-			 <div class="col-md-4 content-main-right">
+			 <div class="col-md-3 content-main-right">
 				 <div class="search">
 						 <h3>SEARCH HERE</h3>
 						<form>
@@ -151,6 +103,9 @@
 <!---->
 <script type="text/javascript">
 		$(document).ready(function() {
+			$("#arti1").show();
+			$("#arti2").hide();
+			$("#arti3").hide();
 				/*
 				var defaults = {
 				containerID: 'toTop', // fading element id
@@ -159,6 +114,30 @@
 				easingType: 'linear' 
 				};
 				*/
+		$("#a1").click(function(){
+			$("#a1").addClass("active");
+			$("#a2").removeClass("active");
+			$("#a3").removeClass("active");
+			$("#arti1").show();
+			$("#arti2").hide();
+			$("#arti3").hide();
+		})
+		$("#a2").click(function(){
+			$("#a1").removeClass("active");
+			$("#a2").addClass("active");
+			$("#a3").removeClass("active");
+			$("#arti1").hide();
+			$("#arti2").show();
+			$("#arti3").hide();
+		})
+		$("#a3").click(function(){
+			$("#a1").removeClass("active");
+			$("#a2").removeClass("active");
+			$("#a3").addClass("active");
+			$("#arti1").hide();
+			$("#arti2").hide();
+			$("#arti3").show();
+		})
 		$().UItoTop({ easingType: 'easeOutQuart' });
 });
 </script>

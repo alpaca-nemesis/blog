@@ -1,6 +1,8 @@
 from django.contrib import admin
 from .models import artical
 
-admin.site.register(artical)
+class articalAdmin(admin.ModelAdmin):
+    list_display = ('title', 'content', 'tag','slug')
 
 # Register your models here.
+admin.site.register(artical, articalAdmin)

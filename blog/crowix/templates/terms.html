@@ -4,31 +4,7 @@
 <body>
 <!---strat-banner---->
 <div class="banner">		 
-	 <div class="header">  
-	  <div class="container">
-		  <div class="logo">
-				<a href="{% url 'index' %}"> <img src="/static/images/logo.png" title="soup" /></a>
-		 </div>
-		 <!---start-top-nav---->
-		 <div class="top-menu">
-			  <span class="menu"> </span> 
-			   <ul>
-					<li><a href="{% url 'index' %}">HOME</a></li>						
-					<li><a href="{% url 'contact' %}">CONTACT</a></li>	
-					<li class="active"><a href="{% url 'term' %}">TERMS</a></li>						
-					<div class="clearfix"> </div>
-			 </ul>
-		 </div>
-		 <div class="clearfix"></div>
-				<script>
-				$("span.menu").click(function(){
-				$(".top-menu ul").slideToggle("slow" , function(){
-				});
-				});
-				</script>
-			<!---//End-top-nav---->					
-	 	</div>
- 	</div>
+	 {% include 'header.html' %}
 	 <div class="container">
 		 {% include 'bannerhead.html' %}	
 	 </div>

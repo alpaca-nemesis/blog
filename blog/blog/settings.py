@@ -88,3 +88,14 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # upload folde
+ACCOUNT_ACTIVATION_DAYS = 7 
+ 
+AUTHENTICATION_BACKENDS = (
+    'registration_email.auth.EmailBackend',
+)
+# NOTICE:not work `lambda request, user: '/'`
+LOGIN_REDIRECT_URL = '/'
+ 
+# NOTICE:not work only '/accounts/activate/complete/'
+REGISTRATION_EMAIL_ACTIVATE_SUCCESS_URL = lambda request, user: '/accounts/activate/complete/'
+REGISTRATION_EMAIL_REGISTER_SUCCESS_URL = lambda request, user: '/accounts/register/complete/'
