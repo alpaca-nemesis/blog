@@ -5,8 +5,9 @@
 		 </div>
 		 <!---start-top-nav---->
 		 <div class="top-menu">
-			  <span class="menu"> </span> 
-			   <ul>
+			  <ul>
+			  	<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#loginModal">Log in</button>
+			  	<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#signinModal">Sign in</button>
 					<li><a href="{% url 'index' %}">HOME</a></li>						
 					<li><a href="{% url 'contact' %}">CONTACT</a></li>	
 					<li><a href="{% url 'term' %}">TERMS</a></li>						
@@ -23,3 +24,65 @@
 			<!---//End-top-nav---->					
 	 </div>
  </div>
+
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" 
+   aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" 
+               aria-hidden="true">×
+            </button>
+            <h4 class="modal-title" id="myModalLabel">
+            	Log in
+            </h4>
+         </div>
+         <div class="modal-body">
+         	<form action="{% url 'login' %}" method="post">
+			 	{% csrf_token %}
+				{{ form1 }}
+
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" 
+               data-dismiss="modal">Close
+            </button>
+            <button type="submit" class="btn btn-primary">
+               Submit
+            </button>
+         </div>
+         	</form>
+         </div>
+      </div><!-- /.modal-content -->
+   </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="signinModal" tabindex="-1" role="dialog" 
+   aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" 
+               aria-hidden="true">×
+            </button>
+            <h4 class="modal-title" id="myModalLabel">
+            	Sign in
+            </h4>
+         </div>
+         <div class="modal-body">
+         	<form action="{% url 'regist' %}" method="post">
+			 	{% csrf_token %}
+				{{ form2 }}
+
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" 
+               data-dismiss="modal">Close
+            </button>
+            <button type="submit" class="btn btn-primary">
+               Submit
+            </button>
+         </div>
+         	</form>
+         </div>
+      </div><!-- /.modal-content -->
+   </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
