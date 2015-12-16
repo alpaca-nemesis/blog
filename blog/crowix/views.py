@@ -1,6 +1,7 @@
 #coding:utf-8
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from django.shortcuts import render,render_to_response
 from django.contrib import auth
 from django.contrib.auth.models import User
 from .models import artical
@@ -17,6 +18,7 @@ def index(request):
 	f1 = loginForm()
 	f2 = userForm()
 	return render(request, 'index.html',{
+		'request': request,
 		'artical1': a1,
 		'artical2': a2,
 		'artical3': a3,
@@ -45,6 +47,7 @@ def contact(request):
 		f1 = loginForm()
 		f2 = userForm()
 		return render(request, 'contact.html', {
+			'request': request,
 			'form': f,
 			'form1': f1,
 			'form2': f2,
@@ -54,18 +57,25 @@ def term(request):
 	f1 = loginForm()
 	f2 = userForm()
 	return render(request, 'terms.html',{
+		'request': request,
 		'form1': f1,
 		'form2': f2,
 		})
 
 def login(request):
 	if request.method == 'POST':
-		usernm = request.POST.get('username')
-		passwd = request.POST.get('password')
+		if not request.POST.get('username'):  
+			errors.append('Please Enter username')
+		else:
+			usernm = request.POST.get('username')
+		if not request.POST.get('password'):  
+			errors.append('Please Enter password')
+		else:
+			passwd = request.POST.get('password')
 		match = auth.authenticate(username=usernm, password=passwd)
 		if match:
 			auth.login(request, match)
-			return HttpResponse('You have logged in!')
+			return HttpResponseRedirect('/index')
 		else:
 			return HttpResponse('Something wrong!')
 

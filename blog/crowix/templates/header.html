@@ -5,12 +5,22 @@
 		 </div>
 		 <!---start-top-nav---->
 		 <div class="top-menu">
-			  <ul>
-			  	<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#loginModal">Log in</button>
-			  	<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#signinModal">Sign in</button>
+			  <ul>           
+            {% if request.user.is_authenticated %}
+            <li>
+            <button class="btn btn-lg" onclick="window.location.href='{% url 'logout' %}'">Log out</button>
+            </li>        
+            {% else %}
+            <li>
+			  	<button class="btn btn-lg" data-toggle="modal" data-target="#loginModal">Log in</button>
+			  	</li>                
+            <li>
+            <button class="btn btn-lg" data-toggle="modal" data-target="#signinModal">Sign in</button>
+            </li>
+            {% endif %}        
 					<li><a href="{% url 'index' %}">HOME</a></li>						
 					<li><a href="{% url 'contact' %}">CONTACT</a></li>	
-					<li><a href="{% url 'term' %}">TERMS</a></li>						
+					<li><a href="{% url 'term' %}">TERMS</a></li>		
 					<div class="clearfix"> </div>
 			 </ul>
 		 </div>
